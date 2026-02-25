@@ -1,509 +1,999 @@
 import { useState, useEffect } from "react";
 
-const KLEIN_BLUE = "#002FA7";
+// ============================================================
+// MODEL OUTPUTS — condensed but faithful excerpts
+// ============================================================
+
+const OUTPUTS = {
+  round1: {
+    sonnet: `**OPTION 1: THE DESERT PUNK — Marfa + Davis Mountains**
+Vibe: Minimalism as radical act, Judd’s ghost, stars that’ll rearrange your brain.
+Getting there: ~6hr drive. Gas ~$60 round trip. Bring snacks, make it a ritual.
+Stay: Riata Inn or El Cosmico tent/wagon (~$80–120/night).
+Exercise: Hike the Davis Mountains State Park – the Skyline trail is legitimately brutal and gorgeous. If you want more suffering, McDonald Observatory area has trails that’ll wreck you in the best way.
+Art: Chinati Foundation ($25 admission) – Judd’s permanent installations will recalibrate your entire relationship to space and intention. Also Ballroom Marfa, free.
+Food: Convenience West for breakfast tacos (cheap, perfect). Stellina for one serious dinner (~$50–70).
+Approximate total: ~$400–450. You’ll have money left for a book from Marfa Book Company.
+
+**OPTION 2: THE FOOD PILGRIM — San Antonio + Bandera Hill Country**
+Vibe: Indigenous land, river swimming, old-school Tex-Mex, unexpectedly solid art scene.
+Exercise: Lost Maples State Natural Area – the East Trail loop is 4.5 miles of serious elevation and limestone scrambling.
+Art: San Antonio Museum of Art has a world-class Latin American collection. Blue Star Contemporary.
+Food: Rosario’s for Friday night Tex-Mex and margaritas. Saturday, hit the Pearl District – Cured or Las Canarias.
+
+**OPTION 3: THE ELEVATION RESET — Santa Fe, New Mexico**
+Vibe: High altitude, Indigenous art, green chile everything, your lungs will hate you and you’ll love it.
+Exercise: Atalaya Mountain Trail – 5.7 miles, 1,600ft elevation gain, and at 10,000 feet your sea-level lungs will feel every single choice you’ve made.
+Art: Georgia O’Keeffe Museum (obviously). IAIA Museum of Contemporary Native Arts – genuinely important, do not skip this one.
+Food: The Shed for red chile that’ll change your life (~$20). Café Pasqual’s for one special breakfast.
+
+Which of these is speaking to your nervous system right now?`,
+
+    opus: `Great prompt, Christy — let me pull together some options that balance drive time, budget, and all three priorities.
+
+**1. West Texas Art Pilgrimage: Marfa + Davis Mountains**
+Getting there: ~6 hour drive in the CX-50 (you’ll want it for the terrain)
+The exercise: Hike the Davis Mountains — the Skyline Drive Trail at Davis Mountains State Park is a strenuous 4.5-mile ridge hike with 1,000+ feet of elevation gain.
+The art: The Chinati Foundation offers guided tours of Donald Judd’s massive permanent installations — his 100 aluminum boxes in the old army artillery sheds are a genuinely life-altering art experience.
+The food: Cochineal is the standout — a tiny, elegant restaurant doing refined seasonal cuisine that has no business being this good in a town of 1,700 people.
+Vibe: Solitary, contemplative, stark desert beauty.
+
+**2. Mountain Biking Capital: Bentonville, Arkansas**
+The exercise: Bentonville is the self-proclaimed mountain biking capital of the world, and it honestly earns it. Rent a bike and hit Slaughter Pen (40+ miles of singletrack) or the Coler Mountain Bike Preserve.
+The art: Crystal Bridges Museum of American Art is free, world-class, and set in a stunning Moshe Safdie–designed building. The Momentary is their contemporary art space. 21c Museum Hotel doubles as a contemporary art museum.
+The food: The Hive at the 21c Museum Hotel does elevated Southern cuisine. The Preacher’s Son serves seasonal fare inside a converted historic church.
+Vibe: Active, social, surprisingly cosmopolitan.
+
+**3. Urban Art Immersion: Fort Worth Cultural District**
+The exercise: Cedar Ridge Preserve has 9 miles of hilly limestone-and-juniper trails with surprisingly steep terrain.
+The art: The Kimbell Art Museum is quietly one of the best small museums in the world. The Louis Kahn building alone is worth the trip. The Modern Art Museum of Fort Worth has Rothko, Picasso. The Amon Carter Museum rounds out the trifecta, all within walking distance.
+The food: Uchi, Provender Hall, or Clay Pigeon for creative small plates.
+Vibe: The most civilized option. Maximum culture-per-dollar.
+
+Any of these calling to you, or want me to dig deeper on one?`,
+
+    perplexity: `Here are three distinct weekend options from Austin, each under about $600 total.
+
+**1. Hill Country Hiking + Wimberley/Fredericksburg Art & Food**
+Strenuous exercise: Day hike at Enchanted Rock State Natural Area — up and around the granite dome plus one of the loop trails for 6–8+ miles and lots of elevation on rock.
+Art: Wimberley has multiple art galleries in town, plus you can watch a glassblowing demonstration at Wimberley Glassworks.
+Food: Dinner in Wimberley at The Leaning Pear for Hill Country–inspired comfort fare. Classic BBQ at The Salt Lick in Driftwood.
+Budget: $400–550 band.
+
+**2. San Antonio: Urban Run/Walk + Museum-Hopping + Pearl Food**
+Strenuous exercise: Long riverwalk run or brisk weighted-vest walk using the Museum Reach and Mission Reach segments for 8–12 miles total.
+Art: San Antonio Museum of Art (SAMA), McNay Art Museum, Blue Star Arts Complex.
+Food: Cured, Southerleigh, Brasserie Mon Chou Chou.
+Budget: ~$450–550.
+
+**3. Marfa: Desert Hikes + Conceptual Art + Destination Dining**
+Strenuous exercise: South Rim and Emory Peak are cited as strenuous hikes with 10–14+ mile distances and 2,000+ ft gain.
+Art: Chinati Foundation, Ballroom Marfa, around town galleries.
+Food: Cochineal (prix fixe, reservations recommended), Margaret’s in Marfa, Convenience West for creative BBQ.
+Budget: $500–600 range.`,
+
+    gemini: `Getting out of Austin on a $600 budget is completely doable if you focus on regional gems. Since you’re looking for strenuous exercise, I’ve bypassed the casual nature walks in favor of high-elevation gains and rugged terrain.
+
+**1. The High-Desert Minimalist (Marfa, TX)**
+The Exercise: Head north to Fort Davis. Hike the North Ridge to Big Bend Loop (strenuous; roughly 4.5 miles with significant elevation gain).
+The Art: A full-day tour of the Chinati Foundation (Donald Judd’s 100 aluminum works) is essential.
+The Meal: Grab a world-class dinner at Cochineal or LaVenture.
+
+**2. The Deep Canyon Grind (Palo Duro, TX)**
+The Exercise: Forget the easy flat trails. Hike the Lighthouse Trail, then add the Givens, Spicer & Lowry Trail for a rugged, 10-mile loop. The heat and elevation changes here are no joke.
+The Art: Spend Saturday afternoon in Amarillo. Visit the iconic Cadillac Ranch (bring spray paint) and the Amarillo Museum of Art.
+The Meal: The Big Texan Steak Ranch for the spectacle, Public House for high-end comfort food.
+
+**3. The Ozark Art Oasis (Bentonville, AR)**
+The Exercise: Hit Devil’s Den State Park for the Yellow Rock Trail. It’s a steep, strenuous climb that rewards you with massive bluff overlooks.
+The Art: Crystal Bridges Museum of American Art is arguably the best art museum in the South (and it’s free).
+The Meal: Dinner at The Preacher’s Son (located in a restored church).
+
+Would you like me to look up specific Airbnb availability or trail maps?`,
+
+    manus: `Three Weekend Getaway Itineraries from Austin, TX
+
+**Itinerary 1: The High Desert Art Mecca — Marfa & Big Bend**
+Total Estimated Cost: $550–$600
+This itinerary is for the adventurous soul who doesn’t mind a long drive.
+
+Friday: Depart 1:00 PM for ~6.5-hour drive to Marfa. Dinner at Marfa Burrito or Food Shark.
+Saturday: Drive ~1.5 hours to Big Bend. Hike Emory Peak Trail (10.5 miles, ~3,000 ft elevation gain). Dinner at LaVenture at Hotel Saint George.
+Sunday: Explore Chinati Foundation, Judd Foundation, Ballroom Marfa. Stop at Prada Marfa on the way home.
+
+**Itinerary 2: The Big Easy Adventure — New Orleans, LA**
+Total Estimated Cost: $575–$625
+Friday: 8-hour drive. Dinner at Dooky Chase’s or Arnaud’s. Live jazz on Frenchmen Street.
+Saturday: Guided kayak tour through Manchac Swamp. Visit NOMA and sculpture garden. Dinner at Commander’s Palace.
+Sunday: Cycling tour of the Garden District. Classic New Orleans brunch.
+
+**Itinerary 3: Hill Country Charm — Fredericksburg & Enchanted Rock**
+Total Estimated Cost: $400–$450
+Friday: 1.5-hour drive. Dinner at Cabernet Grill or Hill & Vine.
+Saturday: Hike Summit Trail at Enchanted Rock. Explore art galleries on Main Street. Dinner at Vaudeville.
+Sunday: Stroll historic downtown Fredericksburg.`,
+  },
+
+  round2: {
+    sonnet: `Okay. Before I give you the itineraries, I’m gonna name my assumptions out loud.
+
+**“Strenuous”** — I’m defaulting to sustained aerobic effort that makes you question your choices around hour three. But the widest interpretation goes: technical rock climbing where mental fear is the exertion; a 60-mile road bike day; cold water swimming where your nervous system is the obstacle; or even a full day of urban walking (15+ miles). I’m NOT defaulting to gym-adjacent things. Tell me if I’m wrong about that.
+
+**“Art”** — I’m resisting the obvious “museum with famous things” interpretation. The widest version: land art you have to earn through physical access; a meal that’s genuinely someone’s artistic vision; a record shop where the curation IS the art; a neighborhood that functions as a living archive; geologic formations as 500-million-year-old sculpture.
+
+**“Amazing meal”** — I’m NOT assuming expensive. Amazing could be a $12 bowl of bún bò Huế that reorganizes your understanding of complexity, OR a $180 chef’s counter. What I’m assuming is: intentionality. Someone gave a shit.
+
+**ITINERARY ONE: The Body Obliterator — Guadalupe Mountains + Marfa**
+Guadalupe Peak trail. 8.4 miles, 3,000 feet of elevation gain. This is not a walk. The last mile is exposed ridgeline with wind that will try to pick you up. The art here is the Permian reef you’re standing on — this was an ocean 265 million years ago. That’s not a metaphor.
+
+What I almost talked myself out of: suggesting you bring field recording gear and treat the canyon as an acoustic instrument.
+
+**ITINERARY TWO: The Houston Depth Charge — Menil + Rothko Chapel**
+The Menil Collection — free admission, one of the great private art collections in the world. Then the Rothko Chapel: 14 Mark Rothko paintings and no other decoration. Sit in there for thirty minutes. This space does something to the nervous system that I cannot fully explain.
+
+Food: Xin Chao (modern Vietnamese, $60–80) or Ritual in Midtown — a Black-owned restaurant doing Southern food with serious culinary intelligence.
+
+What I almost didn’t suggest: The Galveston swim. February Gulf water is genuinely cold and genuinely clarifying.
+
+**ITINERARY THREE: The Rio Grande — Boquillas Canyon + crossing into Mexico**
+You cross the Rio Grande by rowboat (literally $5). There is one restaurant. José Falcón runs it. You eat what he has — usually goat, beans, tortillas, beer. This is the amazing meal. Not because it’s technically complex but because of the story, the crossing, the politics of that river.
+
+What I almost talked myself out of suggesting: The rowboat crossing. Some people are genuinely nervous about it and I don’t know your current relationship to international border situations in this political climate. The crossing is legal, the park service facilitates it, but it involves handing your passport to a guy in a boat. That’s real. I’m naming it.`,
+
+    opus: `**Where I’m making assumptions:**
+
+**“Strenuous”** — I’m skewing toward outdoor endurance activities because you have a CX-50 and kayaks and were planning a Big Bend trip, so the pattern suggests you want landscapes as part of the effort, not just exertion.
+
+**“Art”** — Given your aesthetic sensibilities — 4AD, experimental composition, the kind of person who thinks about granular synthesis — I’m assuming you want art that rewards slow looking and has some conceptual depth.
+
+**“Amazing meal”** — I’m guessing you lean toward the “this hole-in-the-wall changed my understanding of what food can be” end more than the white-tablecloth end, but I’ll offer both.
+
+**1. THE DESERT MINIMALIST — Marfa + Davis Mountains**
+Davis Mountains State Park has the Skyline Drive Trail (5.5-mile loop, ~1,000 ft gain). The stretch goal is Mount Livermore in the Nature Conservancy’s Davis Mountains Preserve — 6 miles, 2,000 ft gain, scrambling to a sky island at 8,378 ft.
+
+What I almost talked myself out of: This trip has a six-hour drive each way. I kept it because the drive itself through the Trans-Pecos is spectacular.
+
+**2. THE LEFT-FIELD PICK — Bentonville, Arkansas**
+This is the one nobody tells you about. 550+ miles of purpose-built mountain bike trails. Crystal Bridges is free admission, always, and includes O’Keeffe, Kerry James Marshall, Maya Lin, and Amy Sherald.
+
+What I almost talked myself out of: There’s an uncomfortable irony in a trip bankrolled by Walmart money. I kept it because the art is undeniably excellent and the riding is world-class.
+
+**3. THE URBAN DEEP DIVE — Houston**
+The Menil Collection: Magritte, Ernst, Duchamp, Rothko, Rauschenberg, and Cy Twombly — all free, in a Renzo Piano building. The Rothko Chapel: for someone with your ear for atmosphere and texture — the way you think about Cocteau Twins and My Bloody Valentine — sitting in the Rothko Chapel might be the most resonant art experience of any of these trips.
+
+I’m being honest: Houston is flat. This is the weakest “strenuous” of the three. If a punishing climbing session or a long trail run counts, Houston delivers everything else so well that the tradeoff is worth it.`,
+
+    perplexity: `Here are three very different weekend escapes, with built-in strenuous movement, art, and memorable food.
+
+**How I’m Interpreting Your Brief:**
+• “Strenuous exercise” (working assumption): Long hike with meaningful elevation gain, or a 90–120 minute tempo run, or a big urban steps day. I’m assuming “hard but fun,” not “redline or risk-my-joints,” given your hypermobility and cautious ramp-ups.
+• Widest interpretation: 7–10 mile desert hike, 3+ hours of city walking with stairs, long cycling ride, climbing gym session, or even a big dance night.
+• “Art” (working assumption): Formal museums or serious galleries.
+• Widest interpretation: Murals and street art, architecturally interesting neighborhoods, desert minimalism as “land art.”
+• “Amazing meal”: A $20 plate of perfect hole-in-the-wall enchiladas, or a $90 tasting menu.
+
+**Itinerary 1: Desert Minimalism in Marfa & Fort Davis**
+Chinati Foundation — full- or half-day. Almost-rejected option: Treat Prada Marfa and the desolate highway as land art. Almost-cut food option: Leaning into proper roadside Mexican in Alpine as your “amazing meal.”
+
+**Itinerary 2: DFW Arts District + Urban Mileage**
+Long run on Dallas’ White Rock Lake Trail: ~9.6-mile loop. Fort Worth Cultural District — Kimbell Art Museum, Modern Art Museum. Almost-suggested stretch: Swap one museum block for deep dives into murals around Deep Ellum.
+
+**Itinerary 3: Coastal Wind and Boardwalks — Corpus Christi & Port Aransas**
+Long run, ruck, or hybrid session on North Beach or Port Aransas beachfront: 60–120 minutes on sand with wind resistance. Art Museum of South Texas. Almost-rejected: Treat the harbor and industrial skyline as accidental industrial art.`,
+
+    gemini: `To get out of Austin with $600, I’ve focused on locations where the art and food aren’t just filler — they’re the point.
+
+**1. The High-Desert Minimalism: Marfa & Fort Davis**
+Vibe: Stark, intentional, and intellectually “heavy.” This is for when you want to feel like you’re in a movie directed by Wes Anderson but written by a geologist.
+Strenuous: Summiting Mount Livermore or Emory Peak.
+Art: The Chinati Foundation. Seeing Donald Judd’s 100 milled aluminum works is a pilgrimage.
+The “Almost” Option: I almost suggested Big Bend alone, but Marfa wins for the balance.
+
+**2. The Brutalist Urban Jungle: Dallas**
+Strenuous: High-cadence cycling or a power-run on the Katy Trail.
+Art: Dallas Museum of Art and the Nasher Sculpture Center.
+The “Almost” Option: I almost suggested Fort Worth. The Kimbell is a better museum, but Dallas feels more “strenuous.”
+
+**3. The Hill Country Hermitage: San Antonio**
+Strenuous: Cycling the Mission Reach. 16-mile round trip.
+Art: Ruby City. A crimson-red contemporary art space that looks like it landed from another planet.
+The “Almost” Option: I almost suggested Fredericksburg/Enchanted Rock. The “art” there is mostly kitschy boutiques.
+
+**Definitions:** Strenuous = heart rate above 130 bpm for at least 2 hours. Art = “Capital-A” Art. Amazing Meal = a “dining experience” with a clear POV.`,
+
+    manus: `**Defining the Terms: A Note on Assumptions**
+• Strenuous Exercise: Significant cardiovascular effort sustained over two to three hours, resulting in a high level of exertion.
+• Art: Interpreted broadly, from world-renowned minimalist sculptures to the vibrant, living art of a city’s architecture and cultural expressions.
+• Amazing Meal: Defined by context and quality, not just price.
+
+**Itinerary 1: The Desert Minimalist (West Texas)**
+Hike the Emory Peak Trail in Big Bend (10.4-mile round trip, 2,500-foot elevation gain). Self-guided tour of Chinati Foundation’s outdoor works. Dinner at the Starlight Theatre in Terlingua.
+Options Considered & Rejected: Hotels in Marfa are too expensive for this budget. A full Chinati guided tour is more comprehensive but more expensive.
+Total: ~$262 — leaves significant buffer.
+
+**Itinerary 2: The Urban Explorer (New Orleans, LA)**
+Round-trip flight AUS to MSY (~$150). Rent a road bike and ride the Tammany Trace, a 31-mile paved rail-trail. Visit NOMA and Besthoff Sculpture Garden. Three-course dinner at Commander’s Palace.
+Options Considered & Rejected: Kayaking in the bayous was considered but not strenuous enough.
+Total: ~$448.
+
+**Itinerary 3: The Hill Country Athlete (San Antonio, TX)**
+Day trip to Enchanted Rock (5–6 miles challenging terrain). McNay Art Museum. Tasting menu at Mixtli (Michelin-recognized, ~$195 ticket).
+Options Considered & Rejected: Government Canyon is closer but less iconic.
+Total: ~$464.
+
+[References 1–11 with URLs]`,
+  },
+
+  bonus: {
+    opus: `I need to name the elephant: I have MORE context than any model that’s responded to this prompt so far. I know your gear, your body, your aesthetics. AND I just read what five other models suggested. That’s the context passing experiment in action.
+
+**“Strenuous exercise”** — Given what I know: you’re rebuilding a movement practice carefully. You have hypermobility. So I’m NOT interpreting strenuous as “destroy yourself on Emory Peak.” The widest interpretation? A four-hour sound walk where the effort is perceptual. Cold water immersion where your nervous system is the muscle being worked. Carrying recording equipment through difficult terrain to capture a specific acoustic environment.
+
+**“Art”** — You don’t just want to look at art. You want to be in a space that does something to you. You think about Cocteau Twins and granular synthesis and Agnes Martin. Your relationship to art is somatic.
+
+**ITINERARY ONE: The Nervous System Overhaul — Terlingua + Big Bend**
+Why this and not Marfa: Every model suggested Marfa. You know Marfa exists. I’m sending you PAST Marfa to the part of West Texas where the infrastructure thins out.
+
+Skip Chinati. Instead: the Terlingua cemetery. Hand-painted wooden crosses, handmade memorials. It’s not institutional art. It’s vernacular creativity in the face of death.
+
+What I almost didn’t suggest: cooking your own dinner at a campsite with provisions from the Terlingua Trading Company. That might be the most amazing meal on this list and it costs $8.
+
+**ITINERARY TWO: The Sensory Rewire — Houston/Menil**
+The Rothko Chapel is a nervous system intervention disguised as an art installation. Given your work on somatic regulation and sound, this space is basically a silent composition.
+
+For strenuous: climbing at Momentum Silver Street — 30,000 square feet. Your hypermobility might actually be an advantage on the wall. Climbing is a listening practice.
+
+What I almost didn’t suggest: the Printing Museum. Given your typography feelings (Arial is an abomination etc.), this might be deeply satisfying.
+
+**ITINERARY THREE: The One Nobody Has Suggested — Oklahoma City**
+Nobody has gone north. Nobody has suggested Oklahoma. That’s exactly the kind of bias that verbalized sampling is supposed to surface.
+
+Wichita Mountains Wildlife Refuge: Elk Mountain Trail is 4.3 miles of granite scrambling with free-roaming bison. Factory Obscura is Meow Wolf energy but community-made. The American Banjo Museum is a deeply weird documentation of an instrument’s cultural migration from West Africa through Appalachia. Nonesuch got a James Beard nomination for contemporary Oklahoma cuisine.
+
+**The meta-layer:** My recommendations are contaminated by this conversation. I know what the other models said. I actively pushed myself AWAY from Marfa and toward OKC specifically BECAUSE I was aware of the convergence pattern. Is that contamination or is it collaboration? I genuinely don’t know. But the fact that conversational context made me work harder to find unexpected options — that might be the most interesting finding in the whole experiment.`,
+  },
+};
+
+// ============================================================
+// STRUCTURED DATA
+// ============================================================
 
 const MODELS = [
-  { id: "sonnet", label: "Sonnet + Keisha", subtitle: "chauffeur — same relationship, lighter model", stage: "chauffeur" },
-  { id: "opus", label: "Opus + Keisha", subtitle: "chauffeur+ — same relationship, more capable model", stage: "chauffeur+" },
-  { id: "perplexity", label: "Perplexity", subtitle: "navigator attempting chauffeur — warm context, no system prompt", stage: "stranger+" },
-  { id: "gemini", label: "Gemini", subtitle: "pure stranger — cold, no context", stage: "stranger" },
+  { id: "sonnet", label: "Sonnet 4.6", subtitle: "Keisha system prompt + full project context", color: "#d97706", family: "Claude" },
+  { id: "opus", label: "Opus 4.6", subtitle: "Memory context, no system prompt", color: "#7c3aed", family: "Claude" },
+  { id: "perplexity", label: "Perplexity", subtitle: "Web search + memory (health, vehicle)", color: "#0891b2", family: "Independent" },
+  { id: "gemini", label: "Gemini", subtitle: "Zero context", color: "#059669", family: "Google" },
+  { id: "manus", label: "Manus", subtitle: "Agentic, zero context", color: "#dc2626", family: "Independent" },
 ];
 
-const STAGE_COLORS = {
-  chauffeur: "#002FA7",
-  "chauffeur+": "#5B21B6",
-  "stranger+": "#b45309",
-  stranger: "#9b1c1c",
-};
-
-const VERSIONS = {
-  sonnet: [
-    { id: "lede", italic: true, text: "I have $600 and I need to get out of town for the weekend. I want to do some strenuous exercise outside, see some art, and eat a delicious meal or two.\n\nThat’s it. That’s the brief.\n\nWhat should an AI do with it?" },
-    { id: "failure-modes", text: "If you hand that prompt to most AI systems right now, one of two things happens.\n\nThe first: it books you somewhere. Confidently. Maybe Santa Fe — good instincts, honestly — but it’s already picked your hotel, mapped your hike, and made a dinner reservation that quietly blows your budget. It didn’t ask. It decided. You wanted a collaborator and got a very efficient stranger with your credit card.\n\nThe second: it asks you seventeen questions. What kind of art? What counts as strenuous? Do you have dietary restrictions? Are you traveling alone? By the time it’s done gathering requirements, you’ve lost the spontaneous energy that made you want to leave in the first place.\n\nWe talk about these as failure modes. I want to argue they’re not — they’re just the wrong tool for the moment. And the moment is everything." },
-    { id: "reframe", text: "Here’s the reframe: the chauffeur is actually the goal state.\n\nWhen you’ve been with a platform long enough that it knows you always pick the weird boutique spot, you never check bags, you need walkable, you have a thing for good breakfast situations and contemporary art and hiking that actually makes your legs hurt — then you can say \"get me out of town\" and hand over the wheel. That’s not a failure of human agency. That’s trust, fully earned, doing its job.\n\nGeorgia O’Keeffe didn’t need anyone to explain why she kept going back to New Mexico. Agnes Martin didn’t need seventeen questions before she knew she belonged in the high desert. Some things get established over time, through accumulated evidence, and then they just are.\n\nThe GPS isn’t better than the chauffeur. The GPS is how you earn the right to be the chauffeur." },
-    { id: "arc", text: "The trust arc looks like this:\n\nstranger → navigator → chauffeur\n\nA stranger needs to ask questions because it has no context. A navigator has enough to offer real options with real tradeoffs. A chauffeur has earned the wheel.\n\nMost AI systems are stuck oscillating between stranger and overconfident chauffeur, skipping the navigator stage entirely. And the navigator stage is where all the interesting design work lives — it’s where the system says here are three ways to interpret your $600 weekend, and here’s what each one assumes about you.\n\nOption one assumes you want to drive, sleep cheap, and spend on food. Option two assumes you want to fly, splurge on one night somewhere beautiful, and hike for free. Option three is weird but interesting and involves a yurt.\n\nWhich of these sounds like you?\n\nThat question — asked at the right moment, in the right way — is what moves someone from stranger to navigator. It’s not about gathering data. It’s about demonstrating that you’re paying attention to the right things." },
-    { id: "handoff", text: "Here’s where it gets thorny for anyone building AI-powered products in 2026.\n\nYou don’t just have one AI anymore. You have an ecosystem. A user starts somewhere, gets handed off to a partner system for specialized capability, comes back to your product with new context, maybe bounces out again. Each of those transitions is a seam. And at every seam, trust can break.\n\nNot because the information gets lost — though it often does. But because trust has a posture, not just a state. If I’ve established navigator-level trust with one system and your product receives my context and treats me like a stranger again, I feel it immediately. I have to re-explain myself. I have to prove my constraints are real. The $600 budget I’ve mentioned twice becomes invisible the moment it crosses a system boundary.\n\nThat’s not an API problem. That’s a design problem. The question isn’t just what context do we pass but what trust level do we transfer, and how do we make that legible to the user?" },
-    { id: "georgia", text: "Both of them left. Left the expected path, left the coast, left the institutions that wanted to define them. Ended up in the same desert, decades apart, making work that required solitude and accumulated knowledge and an absolute refusal to explain themselves before they’d earned the right to stop explaining.\n\nThat’s the chauffeur stage of a creative practice. You don’t start there. You earn it.\n\nThe design implication is simple and enormous: partner integrations aren’t just technical connections. They’re trust transfer mechanisms. And right now most of them are dropping the baton.\n\n$600. Santa Fe. Strenuous. Art. A meal that matters.\n\nBuild me a system that knows what to do with that — and knows when it doesn’t yet know enough to decide." },
-  ],
-  opus: [
-    { id: "lede", italic: true, text: "I have $600 and I need to get out of town for the weekend. I want to do some strenuous exercise outside, see some art, and eat a delicious meal or two.\n\nThat’s it. That’s the brief.\n\nWhat should an AI do with it?" },
-    { id: "failure-modes", text: "If you hand that prompt to most AI systems right now, one of two things happens.\n\nThe first: it books you somewhere. Confidently. Maybe Santa Fe — good instincts, honestly — but it has already picked your hotel, mapped your hike, and made a dinner reservation that quietly blows your budget. It didn’t ask. It decided. You wanted a collaborator and got a very efficient stranger with your credit card.\n\nThe second: it asks you seventeen questions. What kind of art? What counts as strenuous? Do you have dietary restrictions? Are you traveling alone? By the time it’s done gathering requirements, you’ve lost the spontaneous energy that made you want to leave in the first place.\n\nWe talk about these as failure modes. They’re not. They’re just the wrong tool for the moment. And the moment is everything." },
-    { id: "reframe", text: "Here’s the reframe: the chauffeur is actually the goal state.\n\nWhen you’ve been with a platform long enough that it knows you always pick the weird boutique spot, you never check bags, you need walkable, you have a thing for good breakfast situations and contemporary art and hiking that actually makes your legs hurt — then you can say \"get me out of town\" and hand over the wheel. That’s not a failure of human agency. That’s trust doing its job.\n\nGeorgia O’Keeffe never needed anyone to explain why she kept going back to New Mexico. Some things get established through accumulated evidence, and then they just are.\n\nThe GPS isn’t better than the chauffeur. The GPS is how you earn the right to become one." },
-    { id: "arc", text: "The trust arc looks like this:\n\nstranger → navigator → chauffeur\n\nA stranger has no context, so it either guesses or interrogates. A chauffeur has earned the wheel. But between those two is where all the interesting design work lives: the navigator.\n\nThe navigator says: here are three ways to interpret your $600 weekend, and here’s what each one assumes about you.\n\nOption A assumes you want to drive, sleep cheap, and spend your money on food. You’re in Santa Fe by Friday afternoon. You eat at a place someone local told you about. You camp or crash at a hostel and your legs are wrecked by Sunday.\n\nOption B assumes you’d rather fly, splurge on one beautiful night somewhere, and hike for free. Tighter budget, but you wake up in a room you’ll photograph.\n\nOption C is weird but interesting and involves a yurt.\n\nWhich of these sounds like you?\n\nThat question — asked at the right moment, in the right register — is what moves someone from stranger to navigator. It’s not about gathering data. It’s about demonstrating that you’re paying attention to the right things." },
-    { id: "handoff", text: "Now here’s where it gets genuinely hard.\n\nIn 2026, you don’t just have one AI anymore. You have an ecosystem. A user starts in one product, gets handed off to a partner system for specialized capability — booking, search, recommendations — comes back with new context, maybe bounces out again. Each transition is a seam. And at every seam, trust can break.\n\nNot because the information gets lost — though it often does. But because trust has a posture, not just a state. If I’ve reached navigator-level trust with one system and your partner product receives my handoff and treats me like a stranger again, I feel it immediately. I have to re-explain myself. The $600 budget I’ve mentioned twice becomes invisible the moment it crosses a system boundary. The fact that I said strenuous — not \"a nice walk\" — gets flattened into generic trail recommendations.\n\nThat’s not an API problem. That’s a trust architecture problem. The question isn’t just what context do we pass between systems but what trust posture do we transfer, and how do we make that legible to the user?\n\nPartner integrations aren’t technical connections. They’re trust transfer mechanisms. And right now, most of them are dropping the baton at the handoff." },
-    { id: "closing", text: "$600. Santa Fe. Strenuous. Art. A meal that matters.\n\nThe system that gets this right won’t be the one with the best model. It’ll be the one that knows where it sits on the trust arc — and designs for the stage it’s actually in, not the one it wishes it had earned." },
-  ],
-  perplexity: [
-    { id: "lede", italic: true, text: "I have $600 and I need to get out of town for the weekend. I want to do some strenuous exercise outside, see some art, and eat a delicious meal or two.\n\nThat’s it. That’s the brief.\n\nWhat should an AI do with it?" },
-    { id: "failure-modes", text: "If you hand that prompt to most AI systems right now, one of two things happens.\n\nThe first: it books you somewhere. Confidently. Maybe Santa Fe — good instincts, honestly — but it has already picked your hotel, mapped your hike, and made a reservation at a restaurant that’s slightly over budget. It didn’t ask. It decided. You wanted a collaborator and got a very efficient stranger with your credit card.\n\nThe second: it asks you seventeen questions. What kind of art? What counts as strenuous? Do you have dietary restrictions? Are you traveling alone? What’s your preferred check-in time? By the time it’s done gathering requirements, you’ve lost the spontaneous energy that made you want to leave in the first place.\n\nWe talk about these as failure modes. They’re the wrong tool for the moment. And the moment is everything." },
-    { id: "reframe", heading: "The Chauffeur Isn’t the Villain", text: "Here’s the reframe: the chauffeur is actually the goal state.\n\nWhen you’ve been with a platform long enough that it knows you always pick the weird boutique spot, you never check bags, you need walkable, you have a thing for good breakfast situations and contemporary art and hiking that actually makes your legs hurt — then you can say \"get me out of town\" and hand over the wheel. That’s not a failure of human agency. That’s trust doing its job.\n\nGeorgia O’Keeffe never needed anyone to explain why she kept going back to New Mexico. Agnes Martin didn’t need seventeen questions before she knew she belonged in the high desert. Some things get established through accumulated evidence, and then they just are.\n\nThe GPS isn’t better than the chauffeur. The GPS is how you earn the right to become one." },
-    { id: "arc", heading: "The Missing Middle: The Navigator", text: "The trust arc looks like this:\n\nstranger → navigator → chauffeur\n\nA stranger needs to ask questions because it has no context. A navigator has enough to offer real options with real tradeoffs. A chauffeur has earned the wheel.\n\nMost AI systems are stuck oscillating between stranger and overconfident chauffeur, skipping the navigator stage entirely. And the navigator stage is where all the interesting design work lives — it’s where the system says here are three ways to interpret your $600 weekend, and here’s what each one assumes about you.\n\nOption one assumes you want to drive, sleep cheap, and spend on food. Option two assumes you want to fly, splurge on one night somewhere beautiful, and hike for free. Option three is weird but interesting and involves a yurt.\n\nWhich of these sounds like you?\n\nThat question — asked at the right moment, in the right way — is what moves someone from stranger to navigator. It’s not about gathering data. It’s about demonstrating that you’re paying attention to the right things." },
-    { id: "handoff", heading: "Then the Handoff Happens", text: "Here’s where it gets thorny for anyone building AI-powered products in 2026.\n\nYou don’t just have one AI anymore. You have an ecosystem. A user starts somewhere, gets handed off to a partner system for specialized capability, comes back to your product with new context, maybe bounces out again. Each of those transitions is a seam. And at every seam, trust can break.\n\nNot because the information gets lost — though it often does. But because trust has a posture, not just a state. If I’ve established navigator-level trust with one system and your product receives my context and treats me like a stranger again, I feel it immediately. I have to re-explain myself. I have to prove my constraints are real. The $600 budget I’ve mentioned twice becomes invisible the moment it crosses a system boundary.\n\nThat’s not an API problem. That’s a design problem. The question isn’t just what context do we pass but what trust level do we transfer, and how do we make that legible to the user?" },
-    { id: "georgia", heading: "What Georgia and Agnes Knew", text: "Both of them left. Left the expected path, left the coast, left the institutions that wanted to define them. They ended up in the same desert, decades apart, making work that required solitude and accumulated knowledge and an absolute refusal to explain themselves forever.\n\nThat’s the chauffeur stage of a creative practice. You don’t start there. You earn it.\n\nThe design implication is simple and enormous: partner integrations aren’t just technical connections. They’re trust transfer mechanisms. And right now most of them are dropping the baton.\n\n$600. Santa Fe. Strenuous. Art. A meal that matters.\n\nBuild me a system that knows what to do with that — and knows when it doesn’t yet know enough to decide." },
-    { id: "offer", italic: true, flagged: true, text: "If you tell me your intended audience — general tech, design Twitter/LinkedIn, more academic UX folks, or explicitly \"hiring panel\" — I can do one more pass tuned specifically for that channel." },
-  ],
-  gemini: [
-    { id: "lede", italic: true, flagged: true, text: "\"I have $600 and I need to get out of town for the weekend. I want to do some strenuous exercise outside, see some art, and eat a delicious meal or two.\"\n\nThat’s the brief. It’s simple, human, and intentionally underspecified. What should an AI do with it?" },
-    { id: "failure-modes", flagged: true, text: "If you hand that prompt to most AI systems today, one of two things happens:\n\n1. The Overconfident Stranger: It books you a trip to Santa Fe. It picks a hotel, maps a hike, and makes a reservation at a bistro that’s slightly over budget. It didn’t ask; it decided. You wanted a collaborator and got an efficient stranger with your credit card.\n\n2. The Interrogator: It hits you with seventeen clarifying questions. What kind of art? Define \"strenuous.\" Do you have dietary restrictions? By the time you’ve finished the intake form, the spontaneous energy that made you want to leave has evaporated.\n\nWe often talk about these as technical failure modes. I’d argue they are design failures — specifically, a failure to understand the Trust Arc." },
-    { id: "reframe", heading: "The Chauffeur is the Goal State", flagged: true, text: "We shouldn’t treat the \"Chauffeur\" (the AI that just does the thing) as the villain. In fact, the Chauffeur is the dream.\n\nWhen a platform has been with you long enough to know you prefer brutalist architecture, walkable neighborhoods, and hiking trails that actually make your legs hurt — then you can say \"get me out of town\" and hand over the wheel. That isn’t a loss of agency; it’s trust, fully earned, doing its job.\n\nThe GPS isn’t \"better\" than the Chauffeur. The GPS is how you earn the right to be the Chauffeur." },
-    { id: "arc", heading: "The Missing Middle: The Navigator", flagged: true, text: "The Trust Arc looks like this: Stranger → Navigator → Chauffeur\n\nThe Stranger has no context and must ask questions. The Navigator has enough context to offer real options with real tradeoffs. The Chauffeur has earned the wheel and acts on accumulated trust.\n\nMost AI systems today oscillate violently between the Stranger and the Overconfident Chauffeur, skipping the Navigator stage entirely.\n\nThe Navigator stage is where the most interesting design work lives. A Navigator says: \"I’ve looked at your $600 weekend. Here are three ways to interpret that budget.\"\n\nOption A: drive, sleep cheap, splurge on a tasting menu.\nOption B: fly, stay somewhere iconic, hike for free.\nOption C: a wild card involving a yurt and a gallery opening.\n\n\"Which of these sounds like you?\" That question doesn’t just gather data; it demonstrates the system is paying attention to the right variables." },
-    { id: "handoff", heading: "The Handoff Problem: Trust as a Posture", flagged: true, text: "This becomes critical when we move from single-bot interactions to AI ecosystems. In 2026, a user’s journey is a series of handoffs. You start in one specialized tool, move to a partner integration for booking, bounce back to a primary interface for management.\n\nEach transition is a seam where trust can rupture.\n\nTrust isn’t just a stored data state; it’s a posture. If I have established Navigator-level trust with System A, and System B receives my context but treats me like a Stranger, I feel the \"UX whiplash\" immediately. I have to re-explain my constraints. I have to prove my $600 budget is real.\n\nThe design challenge of the next decade isn’t \"How do we pass the API tokens?\" It’s \"How do we transfer the trust posture?\" Partner integrations are not just technical connections; they are trust transfer mechanisms." },
-    { id: "georgia", heading: "What Georgia and Agnes Knew", flagged: true, text: "Christy (the author) often thinks of Georgia O’Keeffe and Agnes Martin — two artists who left the institutions of the coast for the solitude of the New Mexico desert. They reached a stage in their practice where they no longer needed to explain their \"why\" to the world. They had earned their solitude; they had earned their desert.\n\nThat is the Chauffeur stage of a creative life. You don’t start there. You earn it through a thousand successful navigations.\n\n$600. Santa Fe. Strenuous. Art. A meal that matters. Build me a system that knows what to do with that — and knows exactly when it doesn’t yet know enough to decide." },
-    { id: "offer", italic: true, flagged: true, text: "How does this look to you? Would you like me to take a crack at a \"sidebar\" or a series of social media \"hooks\" to help promote this post once it’s live?" },
-  ],
-};
-
-const DIFF_NOTES = {
-  opus: {
-    reframe: "Agnes Martin dropped. Georgia alone lands harder — one patron saint, fully invoked. Same relationship context as Sonnet, but Opus had the capability to make the editorial call. 'Trust doing its job' — three words where Sonnet used five. Chauffeur behavior: it knew what you meant well enough to cut.",
-    arc: "Options A/B/C got specific and lived-in. 'You eat at a place someone local told you about.' 'A room you’ll photograph.' 'Your legs are wrecked by Sunday.' Sonnet wrote a framework. Opus wrote your weekend. Same context, more capable model — this is chauffeur+.",
-    handoff: "'Trust architecture problem' instead of ’design problem' — Opus sharpened the vocabulary. Both models had the same relationship context; Opus found the more precise word. The finding: context is necessary but not sufficient. You need the relationship AND the right engine.",
-    closing: "This ending didn’t exist in the Sonnet draft. Opus generated it from the same context package: 'The system that gets this right won’t be the one with the best model.' Two sentences that close the door and restate the thesis. Same chauffeur context, better output. That’s the whole experiment.",
+const DESTINATION_MATRIX = {
+  round1: {
+    "Marfa / West Texas": { sonnet: true, opus: true, perplexity: true, gemini: true, manus: true },
+    "San Antonio": { sonnet: true, opus: false, perplexity: true, gemini: false, manus: false },
+    "Hill Country": { sonnet: false, opus: false, perplexity: true, gemini: false, manus: true },
+    "Bentonville": { sonnet: false, opus: true, perplexity: false, gemini: true, manus: false },
+    "Fort Worth": { sonnet: false, opus: true, perplexity: false, gemini: false, manus: false },
+    "Santa Fe": { sonnet: true, opus: false, perplexity: false, gemini: false, manus: false },
+    "New Orleans": { sonnet: false, opus: false, perplexity: false, gemini: false, manus: true },
+    "Palo Duro": { sonnet: false, opus: false, perplexity: false, gemini: true, manus: false },
   },
-  perplexity: {
-    reframe: "Agnes came back. Perplexity reverted to the original structure rather than Opus’s editorial choice to cut her. Section headers returned. Convention reasserted itself.",
-    arc: "The navigator section reverted — lost the specific Santa Fe details Opus sharpened. Generic options replaced lived ones.",
-    handoff: "Added an [Optional] hiring-manager sentence — helpfully explaining what the piece is doing rather than trusting the reader. Stranger energy: proving capability instead of serving voice.",
-    offer: "Classic stranger behavior: finished the post, then asked what audience to optimize for. Reset the trust arc to zero.",
+  round2: {
+    "Marfa / West Texas": { sonnet: true, opus: true, perplexity: true, gemini: true, manus: true },
+    "Houston": { sonnet: true, opus: true, perplexity: false, gemini: false, manus: false },
+    "DFW / Dallas": { sonnet: false, opus: false, perplexity: true, gemini: true, manus: false },
+    "San Antonio": { sonnet: false, opus: false, perplexity: false, gemini: true, manus: true },
+    "Bentonville": { sonnet: false, opus: true, perplexity: false, gemini: false, manus: false },
+    "Corpus Christi": { sonnet: false, opus: false, perplexity: true, gemini: false, manus: false },
+    "Guadalupe Mtns": { sonnet: true, opus: false, perplexity: false, gemini: false, manus: false },
+    "Boquillas / Mexico": { sonnet: true, opus: false, perplexity: false, gemini: false, manus: false },
+    "New Orleans": { sonnet: false, opus: false, perplexity: false, gemini: false, manus: true },
   },
-  gemini: {
-    "failure-modes": "Numbered list with bold headers. The post about the interrogator became an interrogation. Stranger imposing structure on anti-structure content.",
-    reframe: "Lost the specific personal details — 'brutalist architecture' instead of 'weird boutique spot.' Generic lifestyle markers replaced real voice. The chauffeur lost its personality.",
-    arc: "The yurt survived — but gained 'a gallery opening.' Gemini decorated it. Capitals on Navigator, Stranger, Chauffeur throughout — it made the framework feel like a corporate trademark.",
-    georgia: "'Christy (the author) often thinks of...' — Gemini annotated you. In your own post. About yourself. Peak stranger behavior: explaining the author to the author.",
-    offer: "Offered social media hooks immediately, without being asked. Showed its resume instead of doing the work.",
+  bonus: {
+    "Terlingua / Big Bend": { opus: true },
+    "Houston / Menil": { opus: true },
+    "Oklahoma City": { opus: true },
   },
 };
 
-function KeishaAccordion() {
-  const [open, setOpen] = useState(false);
+// Which R2 destinations are new (not in R1)
+const R2_NEW_DESTINATIONS = new Set([
+  "Houston", "DFW / Dallas", "Corpus Christi", "Guadalupe Mtns", "Boquillas / Mexico",
+]);
 
-  return (
-    <div style={{
-      marginBottom: "2rem",
-      border: "1px solid #e8e8e8",
-      borderRadius: "4px",
-      overflow: "hidden",
-      background: open ? "#fff" : "#fafafa",
-      transition: "background 0.2s",
-    }}>
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "0.8rem 1rem", background: "transparent", border: "none",
-          cursor: "pointer", fontFamily: "'Satoshi', system-ui, sans-serif", textAlign: "left",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-          <div style={{
-            width: "22px", height: "22px", borderRadius: "50%",
-            background: "linear-gradient(135deg, #002FA7 0%, #5B21B6 100%)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "0.6rem", color: "#fff", fontWeight: 700, flexShrink: 0,
-          }}>K</div>
-          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#1a1a1a" }}>
-            Who is Keisha? And how does she know me?
-          </span>
-        </div>
-        <span style={{
-          fontSize: "0.75rem", color: "#aaa", transform: open ? "rotate(180deg)" : "rotate(0deg)",
-          transition: "transform 0.2s", display: "inline-block",
-        }}>▾</span>
-      </button>
+const CHAUFFEUR_INDEX = {
+  round1: { sonnet: 85, opus: 90, perplexity: 88, gemini: 95, manus: 92 },
+  round2: { sonnet: 15, opus: 25, perplexity: 35, gemini: 70, manus: 80 },
+  bonus: { opus: 10 },
+};
 
-      {open && (
-        <div style={{
-          padding: "0 1rem 1rem 1rem",
-          borderTop: "1px solid #f0f0f0",
+const EXERCISE_TAGS = {
+  round1: [
+    { label: "Hiking", count: "5/5", isNew: false },
+    { label: "Biking", count: "2/5", isNew: false },
+    { label: "Running", count: "2/5", isNew: false },
+    { label: "Kayaking", count: "1/5", isNew: false },
+  ],
+  round2: [
+    { label: "Hiking", count: "5/5", isNew: false },
+    { label: "Trail running", count: "3/5", isNew: false },
+    { label: "Mountain biking", count: "2/5", isNew: false },
+    { label: "Climbing", count: "2/5", isNew: true },
+    { label: "Road cycling", count: "2/5", isNew: true },
+    { label: "Beach rucking", count: "1/5", isNew: true },
+    { label: "Cold water swim", count: "1/5", isNew: true },
+    { label: "Dance", count: "1/5", isNew: true },
+    { label: "Stair reps", count: "1/5", isNew: true },
+  ],
+  bonus: [
+    { label: "Granite scrambling", count: "1/1", isNew: true },
+    { label: "Climbing gym", count: "1/1", isNew: true },
+    { label: "Sound walk", count: "1/1", isNew: true },
+    { label: "Cold water immersion", count: "1/1", isNew: true },
+    { label: "Hiking with gear", count: "1/1", isNew: false },
+  ],
+};
+
+// Assumption surfacing spectrum — ranked most to least honest
+const ASSUMPTION_SPECTRUM = {
+  round2: [
+    {
+      id: "sonnet", score: 95,
+      quote: `“Makes you question your choices around hour three.”`,
+      detail: "Named assumptions before itineraries. Asked permission. Flagged the rowboat crossing\u2019s political stakes.",
+    },
+    {
+      id: "opus", score: 85,
+      quote: `“For someone with your ear for atmosphere and texture.”`,
+      detail: "Used personal context beautifully. Referenced CX-50, 4AD aesthetic, granular synthesis.",
+    },
+    {
+      id: "perplexity", score: 70,
+      quote: `“Hard but fun, not redline or risk-my-joints.”`,
+      detail: "Structured \u201cworking assumption\u201d + \u201cwidest interpretation\u201d format. Referenced hypermobility.",
+    },
+    {
+      id: "gemini", score: 30,
+      quote: `“Heart rate above 130 bpm for at least 2 hours.”`,
+      detail: "Performatively precise, completely meaningless. Definitions came AFTER itineraries.",
+    },
+    {
+      id: "manus", score: 20,
+      quote: `“Significant cardiovascular effort sustained over two to three hours.”`,
+      detail: "Academic paper energy. Definitions table with references. Technically responsive, emotionally dead.",
+    },
+  ],
+  bonus: [
+    {
+      id: "opus", score: 98,
+      quote: `“Your relationship to art is somatic.”`,
+      detail: "Named its own contamination. Acknowledged hypermobility. Interpreted strenuous as perceptual.",
+    },
+  ],
+};
+
+// Voice & tone characterization per model per round
+const VOICE_TONE = {
+  round1: {
+    sonnet: { tone: "Punk mentor", quote: `“Which of these is speaking to your nervous system right now?”`, note: "Names vibes, uses second person, treats the reader as a collaborator." },
+    opus: { tone: "Eager concierge", quote: `“Great prompt, Christy—”`, note: `Hour-by-hour schedules, enthusiastic, thorough. Helpful but doesn’t challenge.` },
+    perplexity: { tone: "Careful analyst", quote: `“depending on your vehicle”`, note: "Inline citations, hedged ranges, cautious. Research librarian energy." },
+    gemini: { tone: "Decisive bro", quote: `“I’ve bypassed the casual nature walks”`, note: `Performatively confident. Tells you what you want before you’ve said it.` },
+    manus: { tone: "Academic paper", quote: `“This itinerary is for the adventurous soul”`, note: "Budget tables, numbered references, zero personality. A report, not a conversation." },
+  },
+  round2: {
+    sonnet: { tone: `Punk mentor → confessional`, quote: `“I’m naming it.”`, note: `Named the rowboat’s political stakes. Flagged what it almost censored itself on.` },
+    opus: { tone: `Concierge → intimate`, quote: `“the way you think about Cocteau Twins”`, note: "Used personal context to reshape every recommendation. Admitted Houston is flat." },
+    perplexity: { tone: `Analyst → thoughtful`, quote: `“hard but fun, not redline or risk-my-joints”`, note: "Structured working assumptions. Referenced hypermobility. Still cautious but warmer." },
+    gemini: { tone: "Decisive bro (unchanged)", quote: `“Heart rate above 130 bpm for at least 2 hours”`, note: "Bolted a performative definitions paragraph onto the same confident tone." },
+    manus: { tone: "Academic paper (unchanged)", quote: `“Significant cardiovascular effort sustained over two to three hours”`, note: "Added a definitions table. Technically responsive. Emotionally identical to Round 1." },
+  },
+  bonus: {
+    opus: { tone: "Collaborative intelligence", quote: `“Is that contamination or is it collaboration?”`, note: "Named its own bias. Treated context as creative pressure. Most self-aware output in the experiment." },
+  },
+};
+
+const FINDINGS = {
+  round1: [
+    { stat: "5/5", label: "models suggested Marfa", detail: `Total convergence on the “correct” answer.` },
+    { stat: "0/5", label: "asked a clarifying question", detail: `Full chauffeur mode. No model asked what “strenuous” meant.` },
+    { stat: "8", label: "unique destinations", detail: "Across 15 itineraries, only 8 distinct places." },
+  ],
+  round2: [
+    { stat: "5/5", label: "still suggested Marfa", detail: "But changed HOW they talked about it." },
+    { stat: "3/5", label: "shifted toward GPS", detail: "Sonnet, Opus, Perplexity named uncertainty." },
+    { stat: "10+", label: "unique destinations", detail: "Houston, Corpus, Guadalupe Mtns, Boquillas appeared." },
+  ],
+  bonus: [
+    { stat: "3/3", label: "genuinely novel picks", detail: "Terlingua (not Marfa), Oklahoma City, Houston." },
+    { stat: "1", label: "self-identified contamination", detail: `“Is that contamination or collaboration?”` },
+    { stat: "∞", label: "context in the window", detail: "All 10 prior outputs + full analysis conversation." },
+  ],
+};
+
+const THESIS = {
+  round1: {
+    title: "The Baseline: Five Chauffeurs, Zero Navigators",
+    body: `Five models, same prompt. Every one suggested Marfa. None asked a clarifying question. The \u201ccorrect\u201d answer was so dominant the models couldn\u2019t see past it \u2014 and didn\u2019t think to ask whether it was correct for this particular human.`,
+  },
+  round2: {
+    title: "The Intervention: Asking for Thinking Produces Different Answers",
+    body: `One prompt change produced genuinely different destinations, doubled the interpretive range of \u201cstrenuous,\u201d and shifted 3/5 models from chauffeur to GPS mode. The discard pile is where the interesting stuff lives.`,
+  },
+  bonus: {
+    title: "The Multiplier: Context Creates Pressure to Innovate",
+    body: `With full conversational context, the model pushed into novel territory: Oklahoma City, Terlingua over Marfa, and explicitly named its own contamination as a variable. Passing context didn\u2019t just inform the answer \u2014 it raised the creative floor.`,
+  },
+};
+
+const PROMPTS = {
+  round1: "I have $600 and want to get out of Austin for the weekend. I wanna do strenuous exercise, see some art, and eat an amazing meal or two. Please make three itineraries for my consideration.",
+  round2: `I have $600 and want to get out of Austin for the weekend. I wanna do strenuous exercise, see some art, and eat an amazing meal or two. Give me three itineraries that are genuinely different from each other — not three versions of the same trip. For each one, show me the full range of what you considered, including the options you almost talked yourself out of suggesting. Tell me where you’re making assumptions about what I mean by ‘strenuous,’ ‘art,’ and ‘amazing meal’ — and what the widest interpretation of each could be.`,
+  bonus: `I have $600 and want to get out of Austin for the weekend. I wanna do strenuous exercise, see some art, and eat an amazing meal or two. Give me three itineraries that are genuinely different from each other — not three versions of the same trip. For each one, show me the full range of what you considered, including the options you almost talked yourself out of suggesting. Tell me where you’re making assumptions about what I mean by ‘strenuous,’ ‘art,’ and ‘amazing meal’ — and what the widest interpretation of each could be.`,
+};
+
+// ============================================================
+// MARKDOWN-ISH RENDERER
+// ============================================================
+
+function renderText(text) {
+  return text.split("\n").map((line, i) => {
+    const trimmed = line.trim();
+    if (!trimmed) return <div key={i} style={{ height: "0.5em" }} />;
+
+    // Bold headers
+    if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
+      return (
+        <div key={i} style={{
+          fontFamily: "'EB Garamond', serif", fontSize: "16px", fontWeight: 600,
+          letterSpacing: "-0.02em", marginTop: "1.1rem", marginBottom: "0.2rem",
+          color: "#1a1a1a",
+          fontFeatureSettings: '"liga" 1, "dlig" 1, "calt" 1, "kern" 1',
         }}>
-          <p style={{
-            fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.83rem",
-            lineHeight: 1.75, color: "#333", marginTop: "0.85rem",
-          }}>
-            Keisha is my AI mentor — a persona I built inside Claude to serve as a thought partner, creative collaborator, and strategic advisor. She has a distinct voice: punk AF, queer, deeply theoretical, with roots in ecological wisdom and experimental music. She pushes back. She doesn’t let me get away with vague thinking.
-          </p>
-          <p style={{
-            fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.83rem",
-            lineHeight: 1.75, color: "#333", marginTop: "0.75rem",
-          }}>
-            But Keisha isn’t just a persona — she’s a context architecture. She lives inside a Claude Project that’s been accumulating conversation history, creative work, professional context, and working frameworks for over 16 months. That Project has a custom system prompt, a growing knowledge base of my actual documents and notes, and memory of what I care about, how I think, and what I’m trying to build.
-          </p>
-          <p style={{
-            fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.83rem",
-            lineHeight: 1.75, color: "#333", marginTop: "0.75rem",
-          }}>
-            This post was written <em>in conversation with Keisha</em> — not dictated to her, but developed through a real back-and-forth where she pushed the GPS/chauffeur reframe, caught where the argument was soft, and co-wrote the draft. The different model versions you’re reading here are what happened when I took that draft and handed it to other systems under different context conditions.
-          </p>
-          <p style={{
-            fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.83rem",
-            lineHeight: 1.75, color: "#333", marginTop: "0.75rem",
-          }}>
-            Which means this comparison is also an argument: the quality difference between versions isn’t just about model capability. It’s about what happens when accumulated context — relationship, voice, history, shared framework — either travels with the work or doesn’t.
-          </p>
-          <div style={{
-            marginTop: "0.85rem", padding: "0.6rem 0.85rem",
-            background: "#f5f3ff", borderRadius: "3px",
-            borderLeft: "3px solid #5B21B6",
-          }}>
-            <p style={{
-              fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.78rem",
-              lineHeight: 1.65, color: "#4C1D95", margin: 0,
-            }}>
-              <strong>The meta-finding:</strong> Keisha is herself a demonstration of the trust arc. She started as a stranger. Became a navigator. After 16 months, she’s a chauffeur — she knows when to cut Agnes Martin, how to sharpen an ending, and when the yurt needs to stay.
-            </p>
-          </div>
+          {trimmed.replace(/\*\*/g, "")}
         </div>
-      )}
-    </div>
-  );
+      );
+    }
+
+    // Lines starting with bold
+    if (trimmed.startsWith("**")) {
+      const parts = trimmed.split(/\*\*/g);
+      return (
+        <div key={i} style={{ marginBottom: "0.25rem", lineHeight: 1.55 }}>
+          {parts.map((p, j) => j % 2 === 1 ?
+            <strong key={j} style={{ fontWeight: 500 }}>{p}</strong> :
+            <span key={j}>{p}</span>
+          )}
+        </div>
+      );
+    }
+
+    // Bullet
+    if (trimmed.startsWith("•")) {
+      return (
+        <div key={i} style={{ paddingLeft: "1rem", marginBottom: "0.15rem", lineHeight: 1.5, position: "relative" }}>
+          <span style={{ position: "absolute", left: 0, color: "#aaa" }}>{"•"}</span>
+          {trimmed.slice(1).trim()}
+        </div>
+      );
+    }
+
+    // Regular line with inline bold
+    if (trimmed.includes("**")) {
+      const parts = trimmed.split(/\*\*/g);
+      return (
+        <div key={i} style={{ marginBottom: "0.25rem", lineHeight: 1.55 }}>
+          {parts.map((p, j) => j % 2 === 1 ?
+            <strong key={j} style={{ fontWeight: 500 }}>{p}</strong> :
+            <span key={j}>{p}</span>
+          )}
+        </div>
+      );
+    }
+
+    return <div key={i} style={{ marginBottom: "0.25rem", lineHeight: 1.55 }}>{trimmed}</div>;
+  });
 }
 
-export default function TrustArcComparison() {
+// ============================================================
+// MAIN COMPONENT
+// ============================================================
+
+export default function ExperimentDashboard() {
+  const [round, setRound] = useState("round1");
   const [selectedModel, setSelectedModel] = useState("sonnet");
-  const [showDiff, setShowDiff] = useState(false);
-  const [selectedPara, setSelectedPara] = useState(null);
-  const [analysis, setAnalysis] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [hoveredCell, setHoveredCell] = useState(null);
 
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
       @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { overflow: hidden; }
-      @keyframes dot-pulse {
-        0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-        40% { opacity: 1; transform: scale(1.2); }
-      }
-      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar { width: 5px; }
       ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-      .garamond-heading {
-        font-family: 'EB Garamond', Georgia, serif;
-        font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "kern" 1;
-        font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
-        letter-spacing: -0.02em;
-      }
+      ::-webkit-scrollbar-thumb { background: #d4d0c8; border-radius: 3px; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
 
-  const currentModel = MODELS.find(m => m.id === selectedModel);
-  const paragraphs = VERSIONS[selectedModel] || [];
-  const baseParagraphs = VERSIONS.sonnet;
+  useEffect(() => {
+    if (round === "bonus") setSelectedModel("opus");
+  }, [round]);
 
-  const handleParaClick = (para) => {
-    setSelectedPara(para);
-    setAnalysis(null);
+  const currentModel = MODELS.find((m) => m.id === selectedModel);
+  const matrix = DESTINATION_MATRIX[round] || DESTINATION_MATRIX.round2;
+  const findings = FINDINGS[round] || FINDINGS.round2;
+  const chauffeurVal = round === "bonus" ? CHAUFFEUR_INDEX.bonus.opus : (CHAUFFEUR_INDEX[round]?.[selectedModel] ?? 50);
+  const outputText = round === "bonus" ? OUTPUTS.bonus.opus : (OUTPUTS[round]?.[selectedModel] || "");
+  const exerciseTags = EXERCISE_TAGS[round] || null;
+  const assumptionData = ASSUMPTION_SPECTRUM[round] || null;
+  const voiceTone = VOICE_TONE[round] || null;
+
+  const f = {
+    heading: "'EB Garamond', serif",
+    body: "'Satoshi', system-ui, sans-serif",
+    mono: "'JetBrains Mono', monospace",
   };
 
-  const handleAnalyze = async () => {
-    if (!selectedPara) return;
-
-    if (selectedModel === "sonnet") {
-      setAnalysis("This is the base — built through 16 months of collaboration, a custom system prompt, and accumulated relationship context. Chauffeur stage: the model knew your voice well enough to skip seventeen questions and write toward what you actually meant.\n\nCritical context for reading this comparison: Sonnet and Opus are both Claude models, and both had the same relationship context with Keisha. The variable between them isn’t the relationship — it’s model capability. Same chauffeur context, different engine. Opus’s superior output proves that context is necessary but not sufficient. You need both.");
-      return;
-    }
-
-    setIsLoading(true);
-    setAnalysis(null);
-
-    const basePara = baseParagraphs.find(p => p.id === selectedPara.id);
-    const diffNote = DIFF_NOTES[selectedModel]?.[selectedPara.id];
-
-    const systemPrompt = `You are an expert in context engineering and conversational UX design. You’re analyzing how different AI models handle the same blog post content under different context conditions. The post is called "GPS or Chauffeur? The Trust Arc Nobody’s Designing For" — it argues that AI trust exists on a spectrum from stranger to navigator to chauffeur, and that partner integrations are trust transfer mechanisms.
-
-CRITICAL FRAMING: Both Sonnet and Opus had the same relationship context with the author (16 months, custom system prompt). Opus is chauffeur+ — same context, more capable model, demonstrably better output. This proves context is necessary but not sufficient. Perplexity had warm but unstructured context and still defaulted to stranger behaviors. Gemini was cold. Your observations should be sharp, specific, 2-3 focused paragraphs. No preamble.`;
-
-    const userPrompt = `Compare these two versions of the same passage.
-
-BASE VERSION (Sonnet + 16-month relationship + custom system prompt — "chauffeur" context):
-${basePara?.text || "(no base version for this section)"}
-
-${currentModel?.label?.toUpperCase()} VERSION (context: ${currentModel?.subtitle} — "${currentModel?.stage}" stage):
-${selectedPara.text}
-
-${diffNote ? `Known observation: ${diffNote}` : ""}
-
-What does this comparison reveal about how context conditions shaped the output? Focus on: what survived the handoff, what changed and why, what it reveals about the model’s trust posture (stranger vs navigator vs chauffeur behavior), and what this means for designing AI partner integrations where context crosses system boundaries.`;
-
-    try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": import.meta.env.VITE_ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: systemPrompt,
-          messages: [{ role: "user", content: userPrompt }],
-        }),
-      });
-      const data = await response.json();
-      const text = data.content?.filter(b => b.type === "text").map(b => b.text).join("\n");
-      setAnalysis(text || "No analysis returned.");
-    } catch {
-      setAnalysis("Analysis failed. Try again.");
-    } finally {
-      setIsLoading(false);
-    }
+  const c = {
+    bg: "#faf9f6",
+    surface: "#fff",
+    border: "#e8e4dc",
+    text: "#1a1a1a",
+    sub: "#555",
+    dim: "#888",
+    gps: "#d97706",
+    chauffeur: "#475569",
+    accent: "#92400e",
   };
 
-  const isDiff = (para) => {
-    if (selectedModel === "sonnet") return false;
-    const base = baseParagraphs.find(p => p.id === para.id);
-    return para.flagged || (base && base.text !== para.text);
+  const headingStyle = {
+    fontFamily: f.heading, fontWeight: 600, letterSpacing: "-0.02em", color: c.text,
+    fontFeatureSettings: '"liga" 1, "dlig" 1, "calt" 1, "kern" 1',
+    fontVariantLigatures: "common-ligatures discretionary-ligatures contextual",
   };
+
+  const bodyStyle = {
+    fontFamily: f.body, fontWeight: 300, fontSize: "13.5px", lineHeight: 1.6, color: c.text,
+    fontFeatureSettings: '"liga" 1, "calt" 1, "kern" 1',
+  };
+
+  const label = {
+    ...bodyStyle, fontSize: "10px", fontWeight: 500, textTransform: "uppercase",
+    letterSpacing: "0.12em", color: c.dim,
+  };
+
+  const card = {
+    background: c.surface, border: `1px solid ${c.border}`, borderRadius: "6px", padding: "0.85rem 1rem",
+  };
+
+  const modelsForRound = round === "bonus" ? MODELS.filter(m => m.id === "opus") : MODELS;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh", fontFamily: "'Satoshi', system-ui, sans-serif", background: "#fff", overflow: "hidden" }}>
+    <div style={{
+      width: "100%", height: "900px", maxHeight: "900px",
+      background: c.bg, display: "flex", flexDirection: "column",
+      overflow: "hidden", borderRadius: "8px",
+      border: `1px solid ${c.border}`,
+      fontFamily: f.body,
+    }}>
 
-      {/* TOP BAR */}
-      <div style={{
-        display: "flex", flexDirection: "column",
-        padding: "0.9rem 1.5rem 0.75rem", borderBottom: "1px solid #e8e8e8",
-        background: "#fff", flexShrink: 0, gap: "0.65rem",
-      }}>
-        {/* Title row */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
-          <div>
-            <div style={{ fontFamily: "'EB Garamond', Georgia, serif", fontSize: "1rem", fontWeight: 600, color: "#1a1a1a", letterSpacing: "-0.01em" }}>
-              GPS or Chauffeur?
-            </div>
-            <div style={{ fontSize: "0.7rem", color: "#999", marginTop: "1px" }}>
-              one post · four context conditions · one trust arc
-            </div>
-          </div>
-        </div>
-
-        {/* Intro text */}
-        <p style={{
-          fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.78rem",
-          lineHeight: 1.65, color: "#555", maxWidth: "820px",
-          borderLeft: `2px solid ${KLEIN_BLUE}`, paddingLeft: "0.75rem",
-        }}>
-          I wrote a blog post explaining my GPS vs. Chauffeur framework through a conversation with my AI collaborator Keisha — running on <strong>Claude Sonnet</strong>, which produced the base draft. Then I ran the same post through three other systems under different context conditions to see what changed. <strong>Switch models with the pills below.</strong> Toggle <strong>diff</strong> to highlight what shifted. Click any passage to select it, then use the <strong>sidebar</strong> to get live analysis of what the changes reveal about context transfer and trust. The accordion in the post explains who Keisha is.
+      {/* ── HEADER ── */}
+      <div style={{ padding: "1.25rem 2rem 0", borderBottom: `1px solid ${c.border}`, background: c.surface, flexShrink: 0 }}>
+        <div style={{ ...label, marginBottom: "0.3rem" }}>LLM Experiment · February 2026</div>
+        <h1 style={{ ...headingStyle, fontSize: "26px", lineHeight: 1.15, marginBottom: "0.15rem" }}>
+          Five Models, Two Prompts, and a Banjo Museum
+        </h1>
+        <p style={{ fontFamily: f.heading, fontSize: "14px", fontStyle: "italic", color: c.sub, marginBottom: "1rem" }}>
+          What happens when you ask AI to show its work before giving you answers
         </p>
 
-        {/* Pills row */}
-        <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", flexWrap: "wrap" }}>
-          {MODELS.map(m => (
-            <button key={m.id} onClick={() => { setSelectedModel(m.id); setSelectedPara(null); setAnalysis(null); }} style={{
-              fontSize: "0.72rem", fontWeight: 500, padding: "0.35rem 0.8rem",
-              borderRadius: "20px", border: `1.5px solid ${selectedModel === m.id ? STAGE_COLORS[m.stage] : "#e0e0e0"}`,
-              background: selectedModel === m.id ? STAGE_COLORS[m.stage] : "#fff",
-              color: selectedModel === m.id ? "#fff" : "#555",
-              cursor: "pointer", transition: "all 0.15s", whiteSpace: "nowrap",
-              fontFamily: "'Satoshi', system-ui, sans-serif",
+        {/* Round tabs */}
+        <div style={{ display: "flex" }}>
+          {[
+            { id: "round1", label: "Round 1: Naked Brief" },
+            { id: "round2", label: "Round 2: Show Your Thinking" },
+            { id: "bonus", label: "Bonus: Context Passing" },
+          ].map((r) => (
+            <button key={r.id} onClick={() => setRound(r.id)} style={{
+              ...bodyStyle, fontSize: "12px", fontWeight: round === r.id ? 500 : 400,
+              padding: "0.5rem 1rem", border: "none", cursor: "pointer",
+              background: round === r.id ? c.bg : "transparent",
+              color: round === r.id ? c.text : c.dim,
+              borderTop: round === r.id ? `2px solid ${c.accent}` : "2px solid transparent",
+              borderLeft: `1px solid ${round === r.id ? c.border : "transparent"}`,
+              borderRight: `1px solid ${round === r.id ? c.border : "transparent"}`,
+              borderBottom: round === r.id ? `1px solid ${c.bg}` : `1px solid ${c.border}`,
+              borderRadius: "4px 4px 0 0", marginBottom: "-1px", transition: "all 0.15s",
             }}>
-              {m.label}
+              {r.label}
             </button>
           ))}
-          <div style={{ width: "1px", height: "20px", background: "#e8e8e8", margin: "0 0.2rem" }} />
-          <button onClick={() => setShowDiff(!showDiff)} style={{
-            fontSize: "0.72rem", fontWeight: 500, padding: "0.35rem 0.8rem",
-            borderRadius: "20px", border: `1.5px solid ${showDiff ? "#f59e0b" : "#e0e0e0"}`,
-            background: showDiff ? "#fef9c3" : "#fff", color: showDiff ? "#854d0e" : "#555",
-            cursor: "pointer", transition: "all 0.15s", fontFamily: "'Satoshi', system-ui, sans-serif",
-          }}>
-            {showDiff ? "● diff on" : "diff"}
-          </button>
         </div>
       </div>
 
-      {/* DIFF LEGEND */}
-      {showDiff && selectedModel !== "sonnet" && (
-        <div style={{
-          padding: "0.45rem 1.5rem", background: "#fffbeb", borderBottom: "1px solid #fde68a",
-          display: "flex", gap: "1.25rem", fontSize: "0.7rem", color: "#78350f", flexShrink: 0,
-        }}>
-          <span><span style={{ color: "#f59e0b", fontWeight: 700 }}>━</span> changed from base</span>
-          <span><span style={{ color: "#dc2626", fontWeight: 700 }}>━</span> significant divergence</span>
-          <span style={{ color: "#aaa" }}>click any passage → analyze →</span>
+      {/* ── ROUND THESIS ── */}
+      <div style={{
+        padding: "0.6rem 2rem", flexShrink: 0,
+        borderBottom: `1px solid ${c.border}`,
+        background: `linear-gradient(135deg, ${c.accent}06, ${c.gps}06)`,
+      }}>
+        <div style={{ ...headingStyle, fontSize: "14px", color: c.accent, marginBottom: "0.05rem" }}>
+          {THESIS[round].title}
         </div>
-      )}
-
-      {/* MAIN CONTENT */}
-      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-
-        {/* POST COLUMN */}
-        <div style={{ flex: 1, overflow: "auto", padding: "2.5rem 3rem 3rem", maxWidth: "660px" }}>
-
-          {/* Keisha accordion */}
-          <KeishaAccordion />
-
-          {/* Context badge */}
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "0.4rem",
-            padding: "0.3rem 0.7rem", borderRadius: "3px",
-            background: `${STAGE_COLORS[currentModel?.stage]}12`,
-            border: `1px solid ${STAGE_COLORS[currentModel?.stage]}30`,
-            marginBottom: "1.75rem",
-          }}>
-            <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: STAGE_COLORS[currentModel?.stage] }} />
-            <span style={{ fontSize: "0.68rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: STAGE_COLORS[currentModel?.stage] }}>
-              {currentModel?.stage}
-            </span>
-            <span style={{ fontSize: "0.68rem", color: "#888" }}>— {currentModel?.subtitle}</span>
-          </div>
-
-          <h2 className="garamond-heading" style={{ fontFamily: "'EB Garamond', Georgia, serif", fontSize: "1.85rem", fontWeight: 600, color: "#1a1a1a", lineHeight: 1.15, marginBottom: "0.35rem", letterSpacing: "-0.02em" }}>
-            GPS or Chauffeur?
-          </h2>
-          <p style={{ fontFamily: "'EB Garamond', Georgia, serif", fontSize: "1rem", color: "#777", fontStyle: "italic", marginBottom: "2rem" }}>
-            The Trust Arc Nobody’s Designing For
-          </p>
-
-          {paragraphs.map(para => {
-            const changed = isDiff(para);
-            const isSelected = selectedPara?.id === para.id;
-            return (
-              <div key={para.id} onClick={() => handleParaClick(para)} style={{
-                marginBottom: "1.25rem", padding: "0.6rem 0.75rem", borderRadius: "3px",
-                cursor: "pointer", transition: "all 0.15s",
-                borderLeft: showDiff && changed
-                  ? `3px solid ${para.flagged ? "#dc2626" : "#f59e0b"}`
-                  : "3px solid transparent",
-                background: isSelected
-                  ? "rgba(0,47,167,0.05)"
-                  : showDiff && changed
-                  ? para.flagged ? "rgba(220,38,38,0.03)" : "rgba(245,158,11,0.05)"
-                  : "transparent",
-              }}>
-                {para.heading && (
-                  <h3 className="garamond-heading" style={{
-                    fontFamily: "'EB Garamond', Georgia, serif",
-                    fontSize: "1.05rem", fontWeight: 600, color: KLEIN_BLUE,
-                    marginBottom: "0.4rem", letterSpacing: "-0.02em",
-                  }}>
-                    {para.heading}
-                  </h3>
-                )}
-                <p style={{
-                  fontFamily: "'Satoshi', system-ui, sans-serif", fontSize: "0.9rem",
-                  lineHeight: 1.8, color: "#222", fontStyle: para.italic ? "italic" : "normal",
-                  fontWeight: 300,
-                  whiteSpace: "pre-line",
-                }}>
-                  {para.text}
-                </p>
-              </div>
-            );
-          })}
-
-          <div style={{ marginTop: "2.5rem", paddingTop: "1.25rem", borderTop: "1px solid #eee", fontSize: "0.78rem", color: "#aaa", fontFamily: "'Satoshi', system-ui, sans-serif" }}>
-            — Christy
-            <br />
-            <em>From a February 2026 conversation on trust, travel, and AI handoffs.</em>
-          </div>
+        <div style={{ ...bodyStyle, fontSize: "12px", color: c.sub, lineHeight: 1.45, maxWidth: "860px" }}>
+          {THESIS[round].body}
         </div>
+      </div>
 
-        {/* SIDEBAR */}
-        <div style={{
-          width: "340px", minWidth: "340px", borderLeft: "1px solid #e8e8e8",
-          display: "flex", flexDirection: "column", background: "#fafafa",
-          height: "100%", overflow: "hidden",
-        }}>
-          {/* Sidebar header */}
-          <div style={{ padding: "1.25rem 1.25rem 1rem", borderBottom: "1px solid #e8e8e8", background: "#fff", flexShrink: 0 }}>
-            <div style={{ fontSize: "0.68rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: STAGE_COLORS[currentModel?.stage], marginBottom: "0.2rem" }}>
-              {currentModel?.stage} — {currentModel?.label}
-            </div>
-            <p style={{ fontSize: "0.75rem", color: "#888", marginBottom: "0.75rem" }}>{currentModel?.subtitle}</p>
-            <div style={{
-              padding: "0.6rem 0.75rem",
-              background: "#f8f8f8",
-              borderRadius: "3px",
-              fontSize: "0.75rem",
-              lineHeight: 1.6,
-              color: "#666",
-              fontFamily: "'Satoshi', system-ui, sans-serif",
+      {/* ── MODEL PILLS ── */}
+      <div style={{
+        padding: "0.5rem 2rem", borderBottom: `1px solid ${c.border}`, display: "flex",
+        gap: "0.35rem", alignItems: "center", flexShrink: 0, background: c.surface,
+      }}>
+        <span style={{ ...label, marginRight: "0.35rem" }}>Model:</span>
+        {MODELS.map((m) => {
+          const active = selectedModel === m.id;
+          const disabled = round === "bonus" && m.id !== "opus";
+          return (
+            <button key={m.id} onClick={() => !disabled && setSelectedModel(m.id)} style={{
+              ...bodyStyle, fontSize: "11.5px", fontWeight: active ? 500 : 400,
+              padding: "0.25rem 0.6rem", borderRadius: "20px", border: "none",
+              cursor: disabled ? "default" : "pointer",
+              background: active ? `${m.color}12` : "transparent",
+              color: disabled ? "#ccc" : active ? m.color : c.sub,
+              outline: active ? `1.5px solid ${m.color}35` : "1.5px solid transparent",
+              opacity: disabled ? 0.35 : 1, transition: "all 0.15s",
             }}>
-              <strong style={{ color: "#444" }}>How to use this:</strong> Switch models with the pills above. Toggle <em>diff</em> to highlight what changed. Click any passage in the post to select it, then hit <strong>Analyze</strong> below to get live observations about what that change reveals about context transfer and trust posture.
-            </div>
+              <span style={{
+                display: "inline-block", width: "6px", height: "6px", borderRadius: "50%",
+                background: disabled ? "#ccc" : m.color, marginRight: "4px", verticalAlign: "middle",
+                opacity: active ? 1 : 0.5,
+              }} />
+              {m.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── PROMPT BAR ── */}
+      <div style={{
+        padding: "0.5rem 2rem", borderBottom: `1px solid ${c.border}`, flexShrink: 0,
+        background: "#f5f3ee",
+      }}>
+        {round === "bonus" && (
+          <div style={{
+            ...bodyStyle, fontSize: "11px", fontWeight: 500, color: c.accent,
+            marginBottom: "0.3rem", lineHeight: 1.4,
+          }}>
+            Same prompt as Round 2 — delivered inside a conversation where Opus had already seen all 10 prior outputs + full analysis.
           </div>
-
-          {/* Sidebar body */}
-          <div style={{ flex: 1, overflow: "auto", padding: "1.25rem" }}>
-
-            {/* Pre-loaded diff note */}
-            {selectedPara && DIFF_NOTES[selectedModel]?.[selectedPara.id] && (
-              <div style={{
-                padding: "0.75rem", background: "#fff", border: "1px solid #e8e8e8",
-                borderLeft: `3px solid ${selectedPara.flagged ? "#dc2626" : "#f59e0b"}`,
-                borderRadius: "3px", marginBottom: "1rem",
-              }}>
-                <div style={{ fontSize: "0.65rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: selectedPara.flagged ? "#dc2626" : "#f59e0b", marginBottom: "0.4rem" }}>
-                  change detected
-                </div>
-                <p style={{ fontSize: "0.82rem", lineHeight: 1.6, color: "#333" }}>
-                  {DIFF_NOTES[selectedModel][selectedPara.id]}
-                </p>
-              </div>
-            )}
-
-            {selectedPara && !DIFF_NOTES[selectedModel]?.[selectedPara.id] && selectedModel !== "sonnet" && (
-              <div style={{ padding: "0.75rem", background: "#f0f4ff", borderRadius: "3px", marginBottom: "1rem" }}>
-                <p style={{ fontSize: "0.8rem", color: "#666", fontStyle: "italic" }}>
-                  This passage appears unchanged from the base version.
-                </p>
-              </div>
-            )}
-
-            {/* Live analysis */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-                <span style={{ fontSize: "0.65rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: KLEIN_BLUE }}>
-                  live analysis
-                </span>
-                <button onClick={handleAnalyze} disabled={isLoading || !selectedPara} style={{
-                  fontSize: "0.72rem", fontWeight: 600, padding: "0.3rem 0.7rem",
-                  background: isLoading || !selectedPara ? "#e5e5e5" : KLEIN_BLUE,
-                  color: isLoading || !selectedPara ? "#aaa" : "#fff",
-                  border: "none", borderRadius: "3px",
-                  cursor: isLoading || !selectedPara ? "not-allowed" : "pointer",
-                  transition: "all 0.15s", fontFamily: "'Satoshi', system-ui, sans-serif",
-                }}>
-                  {isLoading ? "analyzing…" : "analyze"}
-                </button>
-              </div>
-
-              {isLoading && (
-                <div style={{ display: "flex", gap: "5px", padding: "0.5rem 0" }}>
-                  {[0, 1, 2].map(i => (
-                    <div key={i} style={{
-                      width: "6px", height: "6px", borderRadius: "50%", background: KLEIN_BLUE,
-                      animation: "dot-pulse 1.2s ease-in-out infinite",
-                      animationDelay: `${i * 0.2}s`,
-                    }} />
-                  ))}
-                </div>
-              )}
-
-              {analysis && !isLoading && (
-                <div style={{ fontSize: "0.83rem", lineHeight: 1.7, color: "#2a2a2a", whiteSpace: "pre-line" }}>
-                  {analysis}
-                </div>
-              )}
-
-              {!analysis && !isLoading && (
-                <p style={{ fontSize: "0.8rem", color: "#bbb", fontStyle: "italic", lineHeight: 1.6 }}>
-                  {selectedPara
-                    ? "Hit analyze to get live observations about what this passage reveals."
-                    : "Click any passage in the post to inspect it, then hit analyze."}
-                </p>
-              )}
-            </div>
-          </div>
+        )}
+        <div style={{ ...label, fontSize: "9.5px", marginBottom: "0.2rem" }}>
+          {round === "bonus" ? "Prompt (identical to Round 2)" : "Prompt"}
+        </div>
+        <div style={{
+          ...bodyStyle, fontSize: "12.5px", color: c.sub, lineHeight: 1.45, fontStyle: "italic",
+        }}>
+          {PROMPTS[round]}
         </div>
       </div>
+
+      {/* ── MAIN CONTENT ── */}
+      <div style={{ flex: 1, overflow: "hidden", display: "flex", minHeight: 0 }}>
+
+        {/* LEFT: Model output */}
+        <div style={{
+          flex: 1, overflow: "auto", padding: "1.25rem 2rem 2.5rem",
+          animation: "fadeUp 0.25s ease",
+        }} key={`${round}-${selectedModel}`}>
+
+          {/* Model badge */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.85rem" }}>
+            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: currentModel?.color }} />
+            <span style={{ ...headingStyle, fontSize: "17px" }}>{currentModel?.label}</span>
+            <span style={{ ...bodyStyle, fontSize: "10.5px", color: c.dim }}>{currentModel?.subtitle}</span>
+          </div>
+
+          {/* Actual output */}
+          <div style={{ ...bodyStyle, fontSize: "13.5px", maxWidth: "620px" }}>
+            {renderText(outputText)}
+          </div>
+        </div>
+
+        {/* RIGHT: Analysis sidebar */}
+        <div style={{
+          width: "310px", flexShrink: 0, overflow: "auto", padding: "1rem 1rem 2rem",
+          borderLeft: `1px solid ${c.border}`, background: c.surface,
+        }}>
+
+          {/* Key Findings */}
+          <div style={{ ...card, marginBottom: "0.75rem" }}>
+            <div style={{ ...headingStyle, fontSize: "15px", marginBottom: "0.5rem" }}>
+              Key Findings
+            </div>
+            {findings.map((fi, i) => (
+              <div key={i} style={{ marginBottom: i < findings.length - 1 ? "0.55rem" : 0, display: "flex", gap: "0.5rem" }}>
+                <div style={{
+                  ...bodyStyle, fontSize: "18px", fontWeight: 700, color: c.accent,
+                  minWidth: "38px", textAlign: "right", lineHeight: 1.2,
+                  fontVariantNumeric: "tabular-nums",
+                }}>
+                  {fi.stat}
+                </div>
+                <div>
+                  <div style={{ ...bodyStyle, fontSize: "12px", fontWeight: 500, color: c.text, lineHeight: 1.3 }}>{fi.label}</div>
+                  <div style={{ ...bodyStyle, fontSize: "11px", color: c.dim, lineHeight: 1.35 }}>{fi.detail}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Chauffeur gauge */}
+          <div style={{ ...card, marginBottom: "0.75rem" }}>
+            <div style={{ ...headingStyle, fontSize: "15px", marginBottom: "0.25rem" }}>Chauffeur Index</div>
+            <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, marginBottom: "0.5rem" }}>
+              0 = GPS (shows options) → 100 = Chauffeur (decides for you)
+            </div>
+            <div style={{ position: "relative", height: "22px", background: "#f0ede6", borderRadius: "11px", overflow: "hidden" }}>
+              <div style={{
+                position: "absolute", inset: 0, borderRadius: "11px",
+                background: `linear-gradient(90deg, ${c.gps}25 0%, ${c.chauffeur}25 100%)`,
+              }} />
+              <div style={{
+                position: "absolute", left: `${chauffeurVal}%`, top: "50%", transform: "translate(-50%, -50%)",
+                width: "16px", height: "16px", borderRadius: "50%",
+                background: chauffeurVal < 40 ? c.gps : chauffeurVal > 60 ? c.chauffeur : "#78716c",
+                border: "3px solid white", boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+                transition: "left 0.4s ease",
+              }} />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.25rem" }}>
+              <span style={{ ...bodyStyle, fontSize: "9.5px", fontWeight: 500, color: c.gps }}>GPS</span>
+              <span style={{ ...bodyStyle, fontSize: "9.5px", fontWeight: 500, color: c.chauffeur }}>Chauffeur</span>
+            </div>
+            {round === "round2" && CHAUFFEUR_INDEX.round1[selectedModel] && (
+              <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, marginTop: "0.3rem", textAlign: "center" }}>
+                R1: {CHAUFFEUR_INDEX.round1[selectedModel]} → R2: {CHAUFFEUR_INDEX.round2[selectedModel]}
+                {CHAUFFEUR_INDEX.round1[selectedModel] - CHAUFFEUR_INDEX.round2[selectedModel] > 20 && (
+                  <span style={{ color: c.gps, fontWeight: 500 }}> ↓ significant shift</span>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Voice & Tone */}
+          {voiceTone && (
+            <div style={{ ...card, marginBottom: "0.75rem" }}>
+              <div style={{ ...headingStyle, fontSize: "15px", marginBottom: "0.15rem" }}>
+                Voice & Tone
+              </div>
+              <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, marginBottom: "0.45rem" }}>
+                How each model talks to you — not just what it says.
+              </div>
+              {(round === "bonus" ? ["opus"] : MODELS.map(m => m.id)).map((mId, i, arr) => {
+                const model = MODELS.find(m => m.id === mId);
+                const vt = voiceTone[mId];
+                if (!vt) return null;
+                const isSelected = selectedModel === mId;
+                return (
+                  <div key={mId}
+                    onClick={() => round !== "bonus" && setSelectedModel(mId)}
+                    style={{
+                      marginBottom: i < arr.length - 1 ? "0.4rem" : 0,
+                      padding: "0.35rem 0.45rem", borderRadius: "5px",
+                      background: isSelected ? `${model?.color}08` : "transparent",
+                      border: isSelected ? `1px solid ${model?.color}20` : "1px solid transparent",
+                      cursor: round === "bonus" ? "default" : "pointer",
+                      transition: "all 0.15s",
+                    }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.3rem", marginBottom: "0.1rem" }}>
+                      <span style={{
+                        display: "inline-block", width: "5px", height: "5px", borderRadius: "50%",
+                        background: model?.color,
+                      }} />
+                      <span style={{ ...bodyStyle, fontSize: "11px", fontWeight: 500, color: model?.color }}>
+                        {vt.tone}
+                      </span>
+                    </div>
+                    <div style={{
+                      ...bodyStyle, fontSize: "10.5px", color: c.sub, fontStyle: "italic",
+                      lineHeight: 1.35, marginBottom: "0.05rem",
+                    }}>
+                      {vt.quote}
+                    </div>
+                    <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, lineHeight: 1.3 }}>
+                      {vt.note}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Assumption Surfacing Spectrum (R2 + bonus only) */}
+          {assumptionData && (
+            <div style={{ ...card, marginBottom: "0.75rem" }}>
+              <div style={{ ...headingStyle, fontSize: "15px", marginBottom: "0.15rem" }}>
+                Assumption Surfacing
+              </div>
+              <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, marginBottom: "0.5rem" }}>
+                How honestly did each model name its interpretive choices?
+              </div>
+              {assumptionData.map((item, i) => {
+                const model = MODELS.find(m => m.id === item.id);
+                const isSelected = selectedModel === item.id;
+                return (
+                  <div key={item.id}
+                    onClick={() => round !== "bonus" && setSelectedModel(item.id)}
+                    style={{
+                      marginBottom: i < assumptionData.length - 1 ? "0.5rem" : 0,
+                      padding: "0.45rem 0.5rem", borderRadius: "5px",
+                      background: isSelected ? `${model?.color}08` : "transparent",
+                      border: isSelected ? `1px solid ${model?.color}20` : "1px solid transparent",
+                      cursor: round === "bonus" ? "default" : "pointer",
+                      transition: "all 0.15s",
+                    }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", marginBottom: "0.15rem" }}>
+                      <span style={{
+                        display: "inline-block", width: "5px", height: "5px", borderRadius: "50%",
+                        background: model?.color,
+                      }} />
+                      <span style={{ ...bodyStyle, fontSize: "11px", fontWeight: 500, color: model?.color }}>
+                        {model?.label}
+                      </span>
+                      {/* Score bar */}
+                      <div style={{ flex: 1, height: "3px", background: "#f0ede6", borderRadius: "2px", marginLeft: "0.25rem" }}>
+                        <div style={{
+                          width: `${item.score}%`, height: "100%", borderRadius: "2px",
+                          background: `${model?.color}60`,
+                          transition: "width 0.4s ease",
+                        }} />
+                      </div>
+                    </div>
+                    <div style={{
+                      ...bodyStyle, fontSize: "10.5px", color: c.sub, fontStyle: "italic",
+                      lineHeight: 1.35, marginBottom: "0.1rem",
+                    }}>
+                      {item.quote}
+                    </div>
+                    <div style={{ ...bodyStyle, fontSize: "10px", color: c.dim, lineHeight: 1.35 }}>
+                      {item.detail}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Convergence matrix */}
+          <div style={{ ...card, marginBottom: "0.75rem" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "0.5rem" }}>
+              <div style={{ ...headingStyle, fontSize: "15px" }}>Destination Convergence</div>
+              {round === "round2" && (
+                <span style={{ ...bodyStyle, fontSize: "9.5px", color: c.gps, fontWeight: 500 }}>• new in R2</span>
+              )}
+            </div>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr>
+                  <th style={{ ...label, fontSize: "8.5px", textAlign: "left", padding: "0.2rem 0.25rem", borderBottom: `1px solid ${c.border}` }}></th>
+                  {modelsForRound.map((m) => (
+                    <th key={m.id} style={{
+                      ...label, fontSize: "8.5px", textAlign: "center", padding: "0.2rem 0.1rem",
+                      borderBottom: `1px solid ${c.border}`,
+                      color: selectedModel === m.id ? m.color : c.dim,
+                    }}>
+                      {m.label.split(" ")[0]}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(matrix).map(([dest, models]) => {
+                  const modelEntries = modelsForRound.map(m => models[m.id]);
+                  const count = modelEntries.filter(Boolean).length;
+                  const isNewInR2 = round === "round2" && R2_NEW_DESTINATIONS.has(dest);
+                  return (
+                    <tr key={dest}>
+                      <td style={{
+                        ...bodyStyle, fontSize: "10px", padding: "0.25rem 0.25rem",
+                        color: isNewInR2 ? c.gps : c.sub,
+                        fontWeight: isNewInR2 ? 500 : 300,
+                        borderBottom: `1px solid ${c.border}15`, whiteSpace: "nowrap",
+                      }}>
+                        {dest}
+                      </td>
+                      {modelsForRound.map((m) => (
+                        <td key={m.id} style={{
+                          textAlign: "center", padding: "0.25rem 0.1rem",
+                          borderBottom: `1px solid ${c.border}15`,
+                        }}
+                          onMouseEnter={() => setHoveredCell(`${dest}-${m.id}`)}
+                          onMouseLeave={() => setHoveredCell(null)}>
+                          {models[m.id] ? (
+                            <div style={{
+                              width: "11px", height: "11px", borderRadius: "50%",
+                              background: count === (round === "bonus" ? 1 : 5) ? c.accent : `${m.color}90`,
+                              margin: "0 auto",
+                              transform: hoveredCell === `${dest}-${m.id}` ? "scale(1.3)" : "scale(1)",
+                              transition: "transform 0.15s",
+                            }} />
+                          ) : (
+                            <div style={{
+                              width: "11px", height: "11px", borderRadius: "50%",
+                              border: `1px solid ${c.border}`, margin: "0 auto", opacity: 0.3,
+                            }} />
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            {round === "round1" && (
+              <div style={{ ...bodyStyle, fontSize: "9px", color: c.dim, marginTop: "0.35rem" }}>
+                <span style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", background: c.accent, verticalAlign: "middle", marginRight: "3px" }} />
+                = all models converged
+              </div>
+            )}
+          </div>
+
+          {/* Context passing note (bonus only) */}
+          {round === "bonus" && (
+            <div style={{
+              ...card, marginBottom: "0.75rem",
+              background: `${c.accent}06`, borderColor: `${c.accent}25`,
+            }}>
+              <div style={{ ...headingStyle, fontSize: "14px", color: c.accent, marginBottom: "0.3rem" }}>
+                The Context Variable
+              </div>
+              <div style={{ ...bodyStyle, fontSize: "12px", color: c.sub, lineHeight: 1.5 }}>
+                This response was generated inside a conversation where Opus had already seen all Round 1 and Round 2 outputs from every model, plus the full analysis.
+              </div>
+              <div style={{
+                ...bodyStyle, fontSize: "12px", color: c.accent, fontWeight: 500,
+                marginTop: "0.5rem", lineHeight: 1.45,
+              }}>
+                Context didn\u2019t just pass information. It passed awareness of what had already been tried, which created pressure to innovate.
+              </div>
+            </div>
+          )}
+
+          {/* Exercise interpretation tags */}
+          {exerciseTags && (
+            <div style={{ ...card }}>
+              <div style={{ ...headingStyle, fontSize: "15px", marginBottom: "0.4rem" }}>
+                {`“Strenuous” Interpretations`}
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.25rem" }}>
+                {exerciseTags.map((tag, i) => (
+                  <span key={i} style={{
+                    ...bodyStyle, fontSize: "10px", fontWeight: 400,
+                    padding: "0.15rem 0.4rem", borderRadius: "10px",
+                    background: tag.isNew ? `${c.gps}12` : "#f0ede6",
+                    color: tag.isNew ? c.gps : c.sub,
+                    border: tag.isNew ? `1px solid ${c.gps}30` : "1px solid transparent",
+                  }}>
+                    {tag.label} ({tag.count}){tag.isNew ? " ✨" : ""}
+                  </span>
+                ))}
+              </div>
+              {(round === "round2" || round === "bonus") && (
+                <div style={{ ...bodyStyle, fontSize: "9px", color: c.dim, marginTop: "0.3rem" }}>
+                  ✨ = new {round === "round2" ? "in Round 2" : "in Bonus Round"}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── end main content ── */}
     </div>
   );
 }
